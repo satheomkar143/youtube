@@ -50,3 +50,42 @@ body{
 .header_search button{
   border: none;
 }
+
+.mainBody{
+  height:  calc(100vh - 70px);
+  display: flex;
+  overflow: hidden;
+}
+
+.sidebar{
+  height: 100%;
+  width: 230px;
+  background-color: gray;
+  overflow: auto;
+}
+
+.sidebar_catagories{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+}
+
+.sidebar_catagory{
+  display: flex;
+  align-items: center;
+  padding: 12px 25px;
+}
+.sidebar_catagory span{
+  margin-left: 15px;
+}
+.sidebar_catagory:hover{
+  background: white;
+  cursor: pointer;
+}
+
+hr{
+  background-color: aqua;
+  height: 1px;
+  border: none;
+}
