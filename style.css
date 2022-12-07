@@ -1,9 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Henny+Penny&family=Island+Moments&family=Kolker+Brush&family=Merienda+One&family=Monoton&family=Poppins:wght@200;400;600&family=Roboto:wght@300;400;700&family=Rubik+Burned&family=Ubuntu&family=Xanh+Mono&display=swap'); 
 
+:root{
+  --black: black;
+  --white: white;
+  --gray: rgb(100, 100, 100);
+}
+
+
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 body{
@@ -20,7 +29,8 @@ body{
   align-items: center;
   height: 70px;
   padding: 15px;
-  background: gray;
+  background: var(--black);
+  color: var(--white);
 }
 
 .header_logo{
@@ -36,19 +46,32 @@ body{
 .header i{
   padding: 0 7px;
   cursor: pointer;
+
 }
 
+
 .header_search form{
-  border: 1px solid #ddd;
+  border: 1px solid var(--gray);
   height: 35px;
   display: flex;
+  border-radius: 100px;
+  overflow: hidden;
+  background-color: transparent;
 }
 .header_search input{
   width: 500px;
-  padding: 10px;
-}
-.header_search button{
+  padding: 0px 20px;
+  background-color: transparent;
+  outline: none;
   border: none;
+  color: var(--white);
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+.searchBtn{
+  border: none;
+  background-color: transparent;
+  color: var(--white);
 }
 
 .mainBody{
@@ -60,8 +83,9 @@ body{
 .sidebar{
   height: 100%;
   width: 230px;
-  background-color: gray;
+  background: var(--black);
   overflow-y: auto;
+  color: white;
 }
 
 .sidebar_catagories{
@@ -80,22 +104,22 @@ body{
   margin-left: 15px;
 }
 .sidebar_catagory:hover{
-  background: white;
+  background: var(--gray);
   cursor: pointer;
 }
 
 hr{
-  background-color: aqua;
+  background: var(--gray);
   height: 1px;
   border: none;
 }
 
 .videos{
-  background-color: aquamarine;
+  background: var(--black);
   width: 100%;
   height: 100%;
-  padding: 15px 25px;
-  border-top: 1px solid #ddd;
+  padding: 15px;
+  /* border-top: 1px solid #ddd; */
   overflow-y: auto;
 }
 
@@ -106,9 +130,10 @@ hr{
 }
 
 .video{
-  width: 250px;
-  margin-right: 10px;
+  width: 270px;
+  margin:0 5px;
   margin-bottom: 30px;
+  cursor: pointer;
 }
 
 .video_thambnail{
@@ -120,6 +145,7 @@ hr{
   object-fit: cover;
   height: 100%;
   width: 100%;
+  border-radius: 15px;
 }
 
 .author img{
@@ -141,10 +167,11 @@ hr{
 }
 
 .title h3{
-  color: blueviolet;
+  color: var(--white);
   line-height: 18px;
   font-size: 14px;
   margin-bottom: 6px;
+  text-align: justify;
 }
 
 .title a, .title span{
@@ -157,4 +184,127 @@ hr{
   font-size: 20px;
   margin-bottom: 10px;
   color: blue;
+}
+
+.video_player{
+  width: 100%;
+  background-color: rgb(136, 135, 197);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  display: none;
+}
+.display_video{
+  display: flex;
+}
+
+.close_video{
+  /* position: absolute; */
+  top: 80px;
+  right: 30px;
+  font-size: 40px;
+  color: red;
+  z-index: 100;
+  display: none;
+  align-items: left;
+}
+
+.display_close{
+  display: block;
+}
+
+.header_menu .show-search{
+  display: none;
+}
+
+
+.afterSmallDisp{
+  display: none;
+}
+
+.menuShow{
+
+  display: inline;
+ 
+}
+.menuHide{
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1345px){
+  .video{
+    width: 310px;
+  }
+}
+
+@media (max-width: 990px){
+  .header_search input{
+    width: 400px;
+  }
+}
+
+@media (max-width: 850px){
+  .video{
+    width: 270px;
+  }
+  .header_search input{
+    width: 300px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  
+  .sidebar{
+    display: none;
+  }
+ 
+  .show_sidebar{
+    display: inline; 
+    position: fixed;
+    /* top: 4.4rem; */
+    
+  }
+}
+
+@media (max-width: 670px){
+  .header_search input{
+    width: 200px;
+  }
+}
+
+@media (max-width: 590px){
+  .video{
+    width: 310px;
+  }
+  .header_search{
+    display: none;
+  }
+  .header_menu .show-search{
+    display: inline;
+  }
+  .menuShow{
+    display: inline;
+  }
+}
+
+@media (max-width: 425px) {
+
+ 
+  .header_menu .show{
+    display: inline;
+  }
+  .header_menu i{
+    padding: 0;
+  }
 }
