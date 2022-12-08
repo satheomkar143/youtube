@@ -19,9 +19,9 @@ body{
    font-family: 'Roboto',sans-serif;
 }
 
-/* .material-icons{
-  color: white;
-} */
+a{
+  text-decoration: none;
+}
 
 .header{
   display: flex;
@@ -188,7 +188,7 @@ hr{
 
 .video_player{
   width: 100%;
-  background-color: rgb(136, 135, 197);
+  /* background-color: rgb(136, 135, 197); */
   display: flex;
   align-items: center;
   justify-content: center;

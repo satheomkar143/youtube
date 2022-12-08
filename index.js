@@ -1,7 +1,10 @@
 
 // --------------youtube api--------
 
-var apiKey = "AIzaSyBW14OVGNMXXNRyMCjFbiGKj4VQnzrDAGU";
+// var apiKey = "AIzaSyBW14OVGNMXXNRyMCjFbiGKj4VQnzrDAGU"; 
+var apiKey = "AIzaSyCbxiDiAbxTmkQSFMC0cYNY4XzNdcjvuBI";
+
+
 var channelId = "UCyoV63plRyybMKKyna1BVHQ";
 const VIDEO_HTTP = "https://www.googleapis.com/youtube/v3/videos";
 const CHANNEL_HTTP = "https://www.googleapis.com/youtube/v3/channels";
@@ -14,7 +17,7 @@ $(document).ready(function () {
       part: "snippet",
       key: apiKey,
       chart: "mostPopular",
-      maxResults: 50,
+      maxResults: 48,
       regionCode: "IN",
     },
 
@@ -26,7 +29,7 @@ $(document).ready(function () {
     }
   );
 
-  function getChannelIcon(video_data) {
+  function getChannelIcon(video_data , type) {
 
     var vid_container = $(".video_container");
     vid_container.empty();
@@ -44,17 +47,22 @@ $(document).ready(function () {
         video_data.channelThumbnail =
           data.items[0].snippet.thumbnails.default.url;
         console.log(video_data);
-        makeVideoCard(video_data);
+        makeVideoCard(video_data, type);
       }
     );
   }
 
-  function makeVideoCard(item) {
+  function makeVideoCard(item, type) {
     
-
     var vid_title = item.snippet.title;
     var vid_thumb = item.snippet.thumbnails.medium.url;
-    var vid_id = item.id;
+
+    if(type == "search"){
+      var vid_id = item.id.videoId;
+    }else{
+      var vid_id = item.id;
+    }
+
     var vid_container = $(".video_container");
     console.log(vid_id);
     var videoEle = `
@@ -77,6 +85,22 @@ $(document).ready(function () {
     vid_container.append(videoEle);
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
   function searchVideo(search) {
 
     $(".video_player").removeClass("display_video");
@@ -90,14 +114,14 @@ $(document).ready(function () {
         part: "snippet",
         key: apiKey,
         q: search,
-        maxResults: 50,
+        maxResults: 48,
       },
 
       function (data) {
         console.log(data);
         $.each(data.items, function (i, item) {
           // console.log(item);
-          getChannelIcon(item);
+          getChannelIcon(item ,"search");
         });
       }
     );
