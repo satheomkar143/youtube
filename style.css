@@ -2,8 +2,11 @@
 
 :root{
   --black: black;
-  --white: white;
   --gray: rgb(100, 100, 100);
+  --darkgray: rgb(26, 26, 26);
+  --white: white;
+  --darkwhite: rgb(222, 222, 222);
+  --midwhite: rgb(185, 185, 185);
 }
 
 
@@ -114,6 +117,76 @@ hr{
   border: none;
 }
 
+.wrapper{
+  color: var(--white);
+  overflow-x: hidden;
+  position: relative;
+  margin-bottom: 15px;
+}
+.wrapper .icon{
+  position: absolute;
+  top: 0;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.icon:first-child{
+  left: 0;
+  display: none;
+  background: linear-gradient(90deg, var(--black) 50%, transparent) ;
+}
+.icon:last-child{
+  right: 0;
+  justify-content: flex-end;
+  background: linear-gradient(-90deg, var(--black) 50%, transparent) ;
+}
+.icon i{
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50px;
+  /* background: var(--darkgray); */
+}
+.icon i:hover{
+  background: var(--darkgray);
+}
+.icon:first-child i{
+  margin-left: 5px;
+}
+.icon:last-child i{
+  margin-right: 5px;
+}
+
+.wrapper .tabs-box{
+  display: flex;
+  list-style: none;
+  gap: 12px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.tabs-box.dragging{
+  scroll-behavior: auto;
+  cursor: grab;
+}
+.tabs-box .tab{
+  cursor: pointer;
+  font-size: 1rem;
+  white-space: nowrap;
+  background: var(--darkgray);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.tabs-box .tab:hover{
+  background: var(--gray);
+}
+.tabs-box.dragging .tab{
+  user-select: none;
+}
+
 .videos{
   background: var(--black);
   width: 100%;
@@ -190,13 +263,26 @@ hr{
   width: 100%;
   /* background-color: rgb(136, 135, 197); */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
   display: none;
 }
+
 .display_video{
   display: flex;
+}
+
+.subscribeVideo{
+  margin-top: 10px;
+  color: red;
+}
+.subscribeVideo span{
+  font-size: 30px;
+  margin-right: 20px;
+  color: var(--gray);
+  cursor: pointer;
 }
 
 .close_video{
@@ -272,8 +358,10 @@ hr{
   .show_sidebar{
     display: inline; 
     position: fixed;
-    /* top: 4.4rem; */
-    
+    /* top: 4.4rem; */    
+  }
+  .wrapper .icon{
+    width: 80px;
   }
 }
 

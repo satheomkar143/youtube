@@ -81,7 +81,31 @@
 
       <!-- -------------------video section start------------ -->
       <div class="videos">
-        <div class="video_player" id="top">
+
+        <div class="wrapper" id="top" >
+          <div class="icon" ><i id="left" class="material-icons sliderArrow">chevron_left</i></div>
+
+          <ul class="tabs-box">
+            <li class="tab" id="cpp">cpp</li>
+            <li class="tab" id="java">java</li>
+            <li class="tab" id="python">python</li>
+            <li class="tab" id="react">react</li>
+            <li class="tab" id="angular">angular</li>
+            <li class="tab" id="bootstrap">bootstrap</li>
+            <li class="tab" id="mongodb">mongodb</li>
+            <li class="tab" id="jquery">jquery</li>
+            <li class="tab" id="html">html</li>
+            <li class="tab" id="css">css</li>
+            <li class="tab" id="mysql">mysql</li>
+            <li class="tab" id="nodejs">nodejs</li>
+            <li class="tab" id="expressjs">expressjs</li>
+          </ul>
+          <div class="icon" ><i id="right" class="material-icons sliderArrow">navigate_next</i></div>
+          
+        </div>
+
+
+        <div class="video_player" >
           <iframe
             id="player_vid"
             width="560"
@@ -91,6 +115,12 @@
             allow="autoplay; encrypted-media"
             allowfullscreen
           ></iframe>
+          <div class="subscribeVideo" >
+        
+            <span id="likeVidBtn" class="material-icons">thumb_up </span>
+            <span class="material-icons">watch_later </span>
+       
+          </div>
         </div>
 
         <div class="video_container">
@@ -343,5 +373,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="index.js"></script>
+    <script src="wrapper.js"></script>
   </body>
 </html>
