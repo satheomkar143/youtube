@@ -15,7 +15,7 @@ $(document).ready(function () {
       part: "snippet",
       key: apiKey,
       chart: "mostPopular",
-      maxResults: 1,
+      maxResults: 4,
       regionCode: "IN",
     },
 
@@ -101,7 +101,7 @@ $(document).ready(function () {
         part: "snippet",
         key: apiKey,
         q: search,
-        maxResults: 1,
+        maxResults: 4,
       },
 
       function (data) {
@@ -127,14 +127,33 @@ $(document).ready(function () {
     $(".close_video").addClass("display_close");
     $(".video_player").attr('id', $(this).data("id"));
     videoIdPresent($(this).data("id"));
+    videoWatchPresent($(this).data("id"));
+    updateHistoryVideos($(this).data("id"));
   });
 
   function videoIdPresent(id){
     let likedVideos = JSON.parse(localStorage.getItem("likedVideos"));
     let index = likedVideos.indexOf(id);
+    console.log("videoidpresent",index);
     if (index > -1) {
       $("#likeVidBtn").addClass("like");
       $("#likeVidBtn").css({color:"red"});
+    }else{
+      $("#likeVidBtn").removeClass("like");
+      $("#likeVidBtn").css({color:"var(--gray)"});
+    }
+  }
+
+  function videoWatchPresent(id){
+    let watchLaterVideos = JSON.parse(localStorage.getItem("watchLaterVideos"));
+    let index = watchLaterVideos.indexOf(id);
+    console.log("video id watch present",index);
+    if (index > -1) {
+      $("#watchLaterBtn").addClass("watchLater");
+      $("#watchLaterBtn").css({color:"red"});
+    }else{
+      $("#watchLaterBtn").removeClass("watchLater");
+      $("#watchLaterBtn").css({color:"var(--gray)"});
     }
   }
 
@@ -159,6 +178,7 @@ $(document).ready(function () {
     $(tab).on("click",()=>{
       console.log("id= ", tab.id);
       searchVideo(tab.id);
+      
     })
   })
 
@@ -206,6 +226,7 @@ $(document).ready(function () {
       localStorage.setItem("likedVideos", JSON.stringify(likedVideos));
 
       $("#likeVidBtn").css({color:"red"});
+      $("#likeVidBtn").addClass("like");
       console.log("successfully updated video id")
     }else{
       console.log("error in updated video id")
@@ -228,14 +249,81 @@ $(document).ready(function () {
   $("#likeVidBtn").on("click", ()=>{
     if($("#likeVidBtn").hasClass("like")){
       updateUnlikeVideos();
-    }else{
-      $("#likeVidBtn").addClass("like");
+    }else{  
       updateLikedVideos();
     }
   });
 
 
+  // ---------------------user watch later videos--------------
 
+  function updateWatchedVideos(){
+    const videoId = $(".video_player").attr('id');
+    console.log("watchLaterVideos =", videoId);
+
+    let watchLaterVideos = JSON.parse(localStorage.getItem("watchLaterVideos"));
+    if(!watchLaterVideos){
+      watchLaterVideos = [];
+    }
+
+    if(videoId != "undefined"){
+      watchLaterVideos.push(videoId);
+      localStorage.setItem("watchLaterVideos", JSON.stringify(watchLaterVideos));
+
+      $("#watchLaterBtn").css({color:"red"});
+      $("#watchLaterBtn").addClass("watchLater");
+      console.log("successfully updated video watch later id")
+    }else{
+      console.log("error in updated watch later video id")
+    }      
+  }
+
+  function updateUnwatchLaterVideos(){
+    let watchLaterVideos = JSON.parse(localStorage.getItem("watchLaterVideos"));
+    const videoId = $(".video_player").attr('id');
+    let index = watchLaterVideos.indexOf(videoId);
+
+    watchLaterVideos.splice(index, 1);
+    localStorage.setItem("watchLaterVideos", JSON.stringify(watchLaterVideos));
+
+    $("#watchLaterBtn").removeClass("watchLater");
+    $("#watchLaterBtn").css({color:"var(--gray)"});
+    console.log("un watch later successfully");
+  }
+
+  $("#watchLaterBtn").on("click", ()=>{
+    if($("#watchLaterBtn").hasClass("watchLater")){
+      updateUnwatchLaterVideos();
+    }else{  
+      updateWatchedVideos();
+    }
+  });
+
+  // -----------------user video history------------
+  
+
+  function updateHistoryVideos(id){
+
+    let historyVideos = JSON.parse(localStorage.getItem("historyVideos"));
+    if(!historyVideos){
+      historyVideos = [];
+    }
+
+    if(id != "undefined"){
+
+      let index = historyVideos.indexOf(id);
+
+      if(index == -1){
+        historyVideos.push(id);
+        localStorage.setItem("historyVideos", JSON.stringify(historyVideos));
+        console.log("successfully updated video history id")
+      }else{
+        console.log("id already in history")
+      }
+    }else{
+      console.log("error in updated history video id")
+    }  
+  }
 
 
 
