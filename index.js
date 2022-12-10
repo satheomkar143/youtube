@@ -15,7 +15,7 @@ $(document).ready(function () {
       part: "snippet",
       key: apiKey,
       chart: "mostPopular",
-      maxResults: 1,
+      maxResults: 48,
       regionCode: "IN",
     },
 
@@ -97,7 +97,7 @@ $(document).ready(function () {
         part: "snippet",
         key: apiKey,
         q: search,
-        maxResults: 1,
+        maxResults: 48,
       },
 
       function (data) {
