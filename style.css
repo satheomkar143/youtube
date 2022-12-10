@@ -89,6 +89,7 @@ a{
   background: var(--black);
   overflow-y: auto;
   color: white;
+  z-index: 1000;
 }
 
 .sidebar_catagories{
@@ -277,6 +278,7 @@ hr{
 .subscribeVideo{
   margin-top: 10px;
   color: red;
+  /* background-color: aqua; */
 }
 .subscribeVideo span{
   font-size: 30px;
@@ -383,6 +385,9 @@ hr{
   }
   .menuShow{
     display: inline;
+  }
+  .video_player iframe{
+    max-width: 310px;
   }
 }
 
